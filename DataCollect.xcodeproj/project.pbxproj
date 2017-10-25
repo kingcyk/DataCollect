@@ -13,6 +13,9 @@
 		AEDA69461F9CE5EC00B12A52 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEDA69441F9CE5EC00B12A52 /* Main.storyboard */; };
 		AEDA69481F9CE5EC00B12A52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AEDA69471F9CE5EC00B12A52 /* Assets.xcassets */; };
 		AEDA694B1F9CE5EC00B12A52 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEDA69491F9CE5EC00B12A52 /* LaunchScreen.storyboard */; };
+		AEDA69531F9CE93B00B12A52 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDA69521F9CE93B00B12A52 /* Common.swift */; };
+		AEE468951FA0A2FB004F5D68 /* muzik.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AEE468941FA0A2FB004F5D68 /* muzik.mp3 */; };
+		AEE4689C1FA0AB1F004F5D68 /* Zip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEE4689B1FA0AB1F004F5D68 /* Zip.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,10 @@
 		AEDA69471F9CE5EC00B12A52 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AEDA694A1F9CE5EC00B12A52 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AEDA694C1F9CE5EC00B12A52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AEDA69521F9CE93B00B12A52 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		AEE468941FA0A2FB004F5D68 /* muzik.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = muzik.mp3; sourceTree = "<group>"; };
+		AEE468961FA0AA2C004F5D68 /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
+		AEE4689B1FA0AB1F004F5D68 /* Zip.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Zip.framework; path = Carthage/Build/iOS/Zip.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEE4689C1FA0AB1F004F5D68 /* Zip.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,8 +48,10 @@
 		AEDA69321F9CE5EC00B12A52 = {
 			isa = PBXGroup;
 			children = (
+				AEE468961FA0AA2C004F5D68 /* Cartfile */,
 				AEDA693D1F9CE5EC00B12A52 /* DataCollect */,
 				AEDA693C1F9CE5EC00B12A52 /* Products */,
+				AEE4689A1FA0AB1F004F5D68 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,6 +66,7 @@
 		AEDA693D1F9CE5EC00B12A52 /* DataCollect */ = {
 			isa = PBXGroup;
 			children = (
+				AEE468941FA0A2FB004F5D68 /* muzik.mp3 */,
 				AEDA693E1F9CE5EC00B12A52 /* AppDelegate.swift */,
 				AEDA69401F9CE5EC00B12A52 /* FirstViewController.swift */,
 				AEDA69421F9CE5EC00B12A52 /* SecondViewController.swift */,
@@ -63,8 +74,17 @@
 				AEDA69471F9CE5EC00B12A52 /* Assets.xcassets */,
 				AEDA69491F9CE5EC00B12A52 /* LaunchScreen.storyboard */,
 				AEDA694C1F9CE5EC00B12A52 /* Info.plist */,
+				AEDA69521F9CE93B00B12A52 /* Common.swift */,
 			);
 			path = DataCollect;
+			sourceTree = "<group>";
+		};
+		AEE4689A1FA0AB1F004F5D68 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AEE4689B1FA0AB1F004F5D68 /* Zip.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -77,6 +97,7 @@
 				AEDA69371F9CE5EC00B12A52 /* Sources */,
 				AEDA69381F9CE5EC00B12A52 /* Frameworks */,
 				AEDA69391F9CE5EC00B12A52 /* Resources */,
+				AEE468991FA0AAE1004F5D68 /* Carthage Copy Frameworks */,
 			);
 			buildRules = (
 			);
@@ -100,6 +121,11 @@
 					AEDA693A1F9CE5EC00B12A52 = {
 						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -129,16 +155,36 @@
 				AEDA694B1F9CE5EC00B12A52 /* LaunchScreen.storyboard in Resources */,
 				AEDA69481F9CE5EC00B12A52 /* Assets.xcassets in Resources */,
 				AEDA69461F9CE5EC00B12A52 /* Main.storyboard in Resources */,
+				AEE468951FA0A2FB004F5D68 /* muzik.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		AEE468991FA0AAE1004F5D68 /* Carthage Copy Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Zip.framework",
+			);
+			name = "Carthage Copy Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		AEDA69371F9CE5EC00B12A52 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEDA69531F9CE93B00B12A52 /* Common.swift in Sources */,
 				AEDA69431F9CE5EC00B12A52 /* SecondViewController.swift in Sources */,
 				AEDA693F1F9CE5EC00B12A52 /* AppDelegate.swift in Sources */,
 				AEDA69411F9CE5EC00B12A52 /* FirstViewController.swift in Sources */,
@@ -280,6 +326,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 982HK3878L;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = DataCollect/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kingcyk.DataCollect;
@@ -295,6 +345,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 982HK3878L;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = DataCollect/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kingcyk.DataCollect;
