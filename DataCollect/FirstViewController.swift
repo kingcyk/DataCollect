@@ -40,10 +40,10 @@ class FirstViewController: UIViewController {
     var place = 1
     var state = 0
     var stepCount = 0
-    let updateInterval = 1.0 / 60
+    let updateInterval = 1.0 / 30
     let motionManager = CMMotionManager()
     
-    let accDataPath = NSHomeDirectory() + "/Documents/accData.txt"
+    let motionDataPath = NSHomeDirectory() + "/Documents/motionData.txt"
     let stepDataPath = NSHomeDirectory() + "/Documents/stepData.txt"
     
     override func viewDidLoad() {
@@ -114,12 +114,12 @@ class FirstViewController: UIViewController {
             pedometerDataLabel.text = "\(stepCount)"
             dataTextView.text = "Device name: \(deviceName)\nPlace: \(place)\n"
             UIApplication.shared.isIdleTimerDisabled = true
-            if motionManager.isAccelerometerAvailable {
-                motionManager.accelerometerUpdateInterval = updateInterval
-                motionManager.startAccelerometerUpdates(to: OperationQueue.main, withHandler: { data, error in
-                    if let accData = data {
-                        var dataString = "\(dateFormatter.string(from: Date())):\t"
-                        dataString = dataString + String(format: "%.3lf\t%.3lf\t%.3lf", accData.acceleration.x, accData.acceleration.y, accData.acceleration.z)
+            if motionManager.isDeviceMotionAvailable {
+                motionManager.deviceMotionUpdateInterval = updateInterval
+                motionManager.startDeviceMotionUpdates(to: OperationQueue.main, withHandler: { (data, error) in
+                    if let motionData = data {
+                        var dataString = "\(dateFormatter.string(from: Date())): "
+                        dataString = dataString + String(format: "%.3lf %.3lf %.3lf %.3lf %.3lf %.3lf %.3lf %.3lf %.3lf %.3lf %.3lf %.3lf %.3lf %.3lf %.3lf", motionData.gravity.x, motionData.gravity.y, motionData.gravity.z, motionData.userAcceleration.x, motionData.userAcceleration.y, motionData.userAcceleration.z, motionData.rotationRate.x, motionData.rotationRate.y, motionData.rotationRate.z, motionData.magneticField.field.x, motionData.magneticField.field.y, motionData.magneticField.field.z, motionData.attitude.pitch, motionData.attitude.roll, motionData.attitude.yaw)
                         self.dataTextView.text = self.dataTextView.text + dataString + "\n"
                         self.dataTextView.scrollRectToVisible(CGRect(x: 0, y: self.dataTextView.contentSize.height - 15, width: self.dataTextView.contentSize.width, height: 10), animated: false)
                     }
@@ -129,13 +129,13 @@ class FirstViewController: UIViewController {
         case 1:
             // Stop update
             state = 0
-            motionManager.stopAccelerometerUpdates()
+            motionManager.stopDeviceMotionUpdates()
             UIApplication.shared.isIdleTimerDisabled = false
-            try! dataTextView.text.write(toFile: accDataPath, atomically: true, encoding: .utf8)
+            try! dataTextView.text.write(toFile: motionDataPath, atomically: true, encoding: .utf8)
             try! stepString.write(toFile: stepDataPath, atomically: true, encoding: .utf8)
             do {
                 let filename = "\(deviceName)_\(dateFormatter.string(from: Date()))"
-                let zipFilePath = try Zip.quickZipFiles([URL(fileURLWithPath: accDataPath), URL(fileURLWithPath: stepDataPath)], fileName: filename)
+                let zipFilePath = try Zip.quickZipFiles([URL(fileURLWithPath: motionDataPath), URL(fileURLWithPath: stepDataPath)], fileName: filename)
                 documentInteractionController = UIDocumentInteractionController(url: zipFilePath)
                 documentInteractionController.presentOptionsMenu(from: view.frame, in: view, animated: true)
             }

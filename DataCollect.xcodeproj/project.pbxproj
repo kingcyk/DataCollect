@@ -16,6 +16,7 @@
 		AEDA69531F9CE93B00B12A52 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDA69521F9CE93B00B12A52 /* Common.swift */; };
 		AEE468951FA0A2FB004F5D68 /* muzik.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AEE468941FA0A2FB004F5D68 /* muzik.mp3 */; };
 		AEE4689C1FA0AB1F004F5D68 /* Zip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEE4689B1FA0AB1F004F5D68 /* Zip.framework */; };
+		AEE4689E1FA0BD01004F5D68 /* ArchiveManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE4689D1FA0BD01004F5D68 /* ArchiveManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		AEE468941FA0A2FB004F5D68 /* muzik.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = muzik.mp3; sourceTree = "<group>"; };
 		AEE468961FA0AA2C004F5D68 /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		AEE4689B1FA0AB1F004F5D68 /* Zip.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Zip.framework; path = Carthage/Build/iOS/Zip.framework; sourceTree = "<group>"; };
+		AEE4689D1FA0BD01004F5D68 /* ArchiveManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 				AEDA69491F9CE5EC00B12A52 /* LaunchScreen.storyboard */,
 				AEDA694C1F9CE5EC00B12A52 /* Info.plist */,
 				AEDA69521F9CE93B00B12A52 /* Common.swift */,
+				AEE4689D1FA0BD01004F5D68 /* ArchiveManager.swift */,
 			);
 			path = DataCollect;
 			sourceTree = "<group>";
@@ -186,6 +189,7 @@
 			files = (
 				AEDA69531F9CE93B00B12A52 /* Common.swift in Sources */,
 				AEDA69431F9CE5EC00B12A52 /* SecondViewController.swift in Sources */,
+				AEE4689E1FA0BD01004F5D68 /* ArchiveManager.swift in Sources */,
 				AEDA693F1F9CE5EC00B12A52 /* AppDelegate.swift in Sources */,
 				AEDA69411F9CE5EC00B12A52 /* FirstViewController.swift in Sources */,
 			);
