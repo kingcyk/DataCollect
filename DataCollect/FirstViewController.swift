@@ -43,8 +43,8 @@ class FirstViewController: UIViewController {
     let updateInterval = 1.0 / 30
     let motionManager = CMMotionManager()
     
-    let motionDataPath = NSHomeDirectory() + "/Documents/motionData.txt"
-    let stepDataPath = NSHomeDirectory() + "/Documents/stepData.txt"
+//    let motionDataPath = NSHomeDirectory() + "/Documents/motionData.txt"
+//    let stepDataPath = NSHomeDirectory() + "/Documents/stepData.txt"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,7 +66,9 @@ class FirstViewController: UIViewController {
         dateFormatter.locale = Locale.current
         dateFormatter.timeZone = TimeZone.current
         
-        navigationController?.navigationBar.prefersLargeTitles = true
+        if #available(iOS 11.0, *) {
+            navigationController?.navigationBar.prefersLargeTitles = true
+        }
         navigationController?.navigationBar.barStyle = .black
         
         navigationController?.navigationBar.tintColor = tintColor
@@ -131,17 +133,22 @@ class FirstViewController: UIViewController {
             state = 0
             motionManager.stopDeviceMotionUpdates()
             UIApplication.shared.isIdleTimerDisabled = false
-            try! dataTextView.text.write(toFile: motionDataPath, atomically: true, encoding: .utf8)
-            try! stepString.write(toFile: stepDataPath, atomically: true, encoding: .utf8)
-            do {
-                let filename = "\(deviceName)_\(dateFormatter.string(from: Date()))"
-                let zipFilePath = try Zip.quickZipFiles([URL(fileURLWithPath: motionDataPath), URL(fileURLWithPath: stepDataPath)], fileName: filename)
-                documentInteractionController = UIDocumentInteractionController(url: zipFilePath)
-                documentInteractionController.presentOptionsMenu(from: view.frame, in: view, animated: true)
-            }
-            catch {
-                print(error.localizedDescription)
-            }
+            let dataPath = NSHomeDirectory() + "/Documents/" + "\(deviceName)_\(dateFormatter.string(from: Date())).txt"
+            try! dataTextView.text.write(toFile: dataPath, atomically: true, encoding: .utf8)
+            documentInteractionController = UIDocumentInteractionController(url: URL(fileURLWithPath: dataPath))
+            documentInteractionController.presentOptionsMenu(from: view.frame, in: view, animated: true)
+            
+//            try! dataTextView.text.write(toFile: motionDataPath, atomically: true, encoding: .utf8)
+//            try! stepString.write(toFile: stepDataPath, atomically: true, encoding: .utf8)
+//            do {
+//                let filename = "\(deviceName)_\(dateFormatter.string(from: Date()))"
+//                let zipFilePath = try Zip.quickZipFiles([URL(fileURLWithPath: motionDataPath), URL(fileURLWithPath: stepDataPath)], fileName: filename)
+//                documentInteractionController = UIDocumentInteractionController(url: zipFilePath)
+//                documentInteractionController.presentOptionsMenu(from: view.frame, in: view, animated: true)
+//            }
+//            catch {
+//                print(error.localizedDescription)
+//            }
             mainButton.setTitle("开始", for: .normal)
         default:
             return
@@ -251,7 +258,7 @@ class FirstViewController: UIViewController {
         pedometerView.backgroundColor = pulseActiveColor
         pedometerDataLabel.text = "\(stepCount)"
         pedometerTimeLabel.text = "\(dateFormatter.string(from: Date()))"
-        stepString = stepString + "\(dateFormatter.string(from: Date())): Step\n"
+        dataTextView.text = dataTextView.text + "\(dateFormatter.string(from: Date())): Step\n"
         UIView.animate(withDuration: 0.8) {
             self.pedometerView.backgroundColor = pulseNormalColor
         }
